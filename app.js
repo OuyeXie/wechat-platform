@@ -25,21 +25,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+
+//app.use('/weixin', weixin);
+
 app.use(express.query()); // Or app.use(express.query());
 app.use('/wechat', wechat('ouyexiewechattoken', function (req, res, next) {
   var message = req.weixin;
   console.log(message);
   if((message.MsgType == 'event') && (message.Event == 'subscribe'))
   {
-    var refillStr = "<a href=\"http://your_IP/weixin/refill?weixinId=" + message.FromUserName + "\">1. refill</a>"
+    var _you = "<a href=\"http://your_IP/weixin/you?weixinId=" + message.FromUserName + "\">you</a>"
+    var _cannot = "<a href=\"http://your_IP/weixin/cannot?weixinId=" + message.FromUserName + "\">cannot</a>"
+    var _do = "<a href=\"http://your_IP/weixin/do?weixinId=" + message.FromUserName + "\">do</a>"
+    var _anything = "<a href=\"http://your_IP/weixin/anything?weixinId=" + message.FromUserName + "\">anything</a>"
+    var _for = "<a href=\"http://your_IP/weixin/for?weixinId=" + message.FromUserName + "\">for</a>"
+    var _now = "<a href=\"http://your_IP/weixin/now?weixinId=" + message.FromUserName + "\">now</a>"
 
-    var consumeStr = "<a href=\"http://your_IP/weixin/consume?weixinId=" + message.FromUserName + "\">2. consume</a>"
-    var deleteStr = "<a href=\"http://your_IP/weixin/delete?weixinId=" + message.FromUserName + "\">3. delete</a>"
-    var historyStr = "<a href=\"http://your_IP/weixin/history?weixinId=" + message.FromUserName + "\">4. history</a>"
-
-    var emptyStr = "          ";
-    var replyStr = "Thanks for following！" + "\n"+ emptyStr + "\n" + refillStr + "\n"+ emptyStr + "\n" + consumeStr
-        + "\n"+ emptyStr + "\n" + deleteStr + "\n"+ emptyStr + "\n" + historyStr;
+    var _emptyStr = "          ";
+    var replyStr = "Thanks for following！" + "\n"+ emptyStr + "\n" + _you + "\n"+ emptyStr + "\n" + _cannot
+        + "\n"+ _do + "\n" + _anything + "\n"+ emptyStr + "\n" + _for + "\n" + _now;
     res.reply(replyStr);
   }
 }));

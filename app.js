@@ -42,8 +42,8 @@ app.use('/wechat', wechat('ouyexiewechattoken', function (req, res, next) {
     var _now = "<a href=\"http://your_IP/weixin/now?weixinId=" + message.FromUserName + "\">now</a>"
 
     var _emptyStr = "          ";
-    var replyStr = "Thanks for following！" + "\n"+ emptyStr + "\n" + _you + "\n"+ emptyStr + "\n" + _cannot
-        + "\n"+ _do + "\n" + _anything + "\n"+ emptyStr + "\n" + _for + "\n" + _now;
+    var replyStr = "Thanks for following！" + "\n"+ _emptyStr + "\n" + _you + "\n"+ _emptyStr + "\n" + _cannot
+        + "\n"+ _emptyStr +_do + "\n" + _emptyStr + _anything + "\n"+ _emptyStr + _for + "\n" + _emptyStr + _now;
     res.reply(replyStr);
   }
 }));

@@ -8,6 +8,7 @@ var wechat = require("wechat");
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var checkmeout = require('./routes/checkmeout');
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/checkmeout', checkmeout);
 
 //app.use('/weixin', weixin);
 
@@ -32,18 +34,44 @@ app.use(express.query()); // Or app.use(express.query());
 app.use('/wechat', wechat('ouyexiewechattoken', function (req, res, next) {
   var message = req.weixin;
   console.log(message);
+
+  var checkmeout = "<a href=\"http://" + process.env.HOST + "/checkmeout?wechatId=" + message.FromUserName + "\">Check me out!</a>"
+
   if((message.MsgType == 'event') && (message.Event == 'subscribe'))
   {
-    var _you = "<a href=\"http://your_IP/weixin/you?weixinId=" + message.FromUserName + "\">you</a>"
-    var _cannot = "<a href=\"http://your_IP/weixin/cannot?weixinId=" + message.FromUserName + "\">cannot</a>"
-    var _do = "<a href=\"http://your_IP/weixin/do?weixinId=" + message.FromUserName + "\">do</a>"
-    var _anything = "<a href=\"http://your_IP/weixin/anything?weixinId=" + message.FromUserName + "\">anything</a>"
-    var _for = "<a href=\"http://your_IP/weixin/for?weixinId=" + message.FromUserName + "\">for</a>"
-    var _now = "<a href=\"http://your_IP/weixin/now?weixinId=" + message.FromUserName + "\">now</a>"
+    //var _you = "<a href=\"http://your_IP/weixin/you?weixinId=" + message.FromUserName + "\">you</a>"
+    //var _cannot = "<a href=\"http://your_IP/weixin/cannot?weixinId=" + message.FromUserName + "\">cannot</a>"
+    //var _do = "<a href=\"http://your_IP/weixin/do?weixinId=" + message.FromUserName + "\">do</a>"
+    //var _anything = "<a href=\"http://your_IP/weixin/anything?weixinId=" + message.FromUserName + "\">anything</a>"
+    //var _for = "<a href=\"http://your_IP/weixin/for?weixinId=" + message.FromUserName + "\">for</a>"
+    //var _now = "<a href=\"http://your_IP/weixin/now?weixinId=" + message.FromUserName + "\">now</a>"
+    //
+    //var _emptyStr = "          ";
+    //var replyStr = "Thanks for following！" + "\n"+ _emptyStr + _you + "\n"+ _emptyStr + _cannot
+    //    + "\n"+ _emptyStr +_do + "\n" + _emptyStr + _anything + "\n"+ _emptyStr + _for + "\n" + _emptyStr + _now;
+    //res.reply(replyStr);
 
-    var _emptyStr = "          ";
-    var replyStr = "Thanks for following！" + "\n"+ _emptyStr + _you + "\n"+ _emptyStr + _cannot
-        + "\n"+ _emptyStr +_do + "\n" + _emptyStr + _anything + "\n"+ _emptyStr + _for + "\n" + _emptyStr + _now;
+
+    var replyStr = "Thanks for following！" + "\n"+ checkmeout;
+    res.reply(replyStr);
+  }
+
+  if((message.MsgType == 'text') && (message.Content == 'piccola'))
+  {
+    //var _you = "<a href=\"http://your_IP/weixin/you?weixinId=" + message.FromUserName + "\">you</a>"
+    //var _cannot = "<a href=\"http://your_IP/weixin/cannot?weixinId=" + message.FromUserName + "\">cannot</a>"
+    //var _do = "<a href=\"http://your_IP/weixin/do?weixinId=" + message.FromUserName + "\">do</a>"
+    //var _anything = "<a href=\"http://your_IP/weixin/anything?weixinId=" + message.FromUserName + "\">anything</a>"
+    //var _for = "<a href=\"http://your_IP/weixin/for?weixinId=" + message.FromUserName + "\">for</a>"
+    //var _now = "<a href=\"http://your_IP/weixin/now?weixinId=" + message.FromUserName + "\">now</a>"
+    //
+    //var _emptyStr = "          ";
+    //var replyStr = "Thanks for following！" + "\n"+ _emptyStr + _you + "\n"+ _emptyStr + _cannot
+    //    + "\n"+ _emptyStr +_do + "\n" + _emptyStr + _anything + "\n"+ _emptyStr + _for + "\n" + _emptyStr + _now;
+    //res.reply(replyStr);
+
+
+    var replyStr = "gugu！" + "\n"+ checkmeout;
     res.reply(replyStr);
   }
 }));

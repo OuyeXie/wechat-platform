@@ -1,9 +1,13 @@
 #!/usr/bin/env node
 
 /**
+ * Load .env for development environments
+ */
+require('dotenv').load();
+
+/**
  * Module dependencies.
  */
-
 var app = require('../app');
 var debug = require('debug')('wechat:server');
 var http = require('http');

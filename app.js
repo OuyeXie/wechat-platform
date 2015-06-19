@@ -43,7 +43,8 @@ app.use('/wechat', wechat('ouyexiewechattoken', function (req, res, next) {
   var message = req.weixin;
   console.log(message);
 
-  var checkmeout = "<a href=\"http://" + process.env.HOST + "/checkmeout?wechatId=" + message.FromUserName + "\">Check me out!</a>"
+  var checkMeOut = "<a href=\"http://" + process.env.HOST + "/checkmeout?wechatId=" + message.FromUserName + "\">Check me out!</a>"
+  var homePage = "<a href=\"http://" + process.env.HOST + "\">Check out my home page!</a>"
 
   if((message.MsgType == 'event') && (message.Event == 'subscribe'))
   {
@@ -79,7 +80,7 @@ app.use('/wechat', wechat('ouyexiewechattoken', function (req, res, next) {
     //res.reply(replyStr);
 
 
-    var replyStr = "gugu！" + "\n"+ checkmeout;
+    var replyStr = "gugu！" + "\n"+ homePage;
     res.reply(replyStr);
   }
 }));

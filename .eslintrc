@@ -1,0 +1,18 @@
+{
+  "extends": "eslint-config-airbnb",
+  "rules": {
+    "semi": 0,
+    "comma-dangle": 0,
+    "no-var": 0,
+    "spaced-comment": 0,
+    "space-before-blocks": 0,
+    "no-param-reassign": 0,
+    "new-cap": 0,
+    "react/sort-comp": 0,
+    "react/wrap-multilines": 0,
+    "react/prop-types": 0,
+    "prefer-const": 0,
+    "no-console": 0,
+    "id-length": 0
+  }
+}

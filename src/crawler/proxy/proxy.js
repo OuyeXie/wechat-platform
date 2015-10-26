@@ -32,6 +32,7 @@ async function getProxyFromCz88() {
   let $
 
   function extractProxy(i, elem) {
+    // first line is not useful (column titles)
     if (!i) {
       return
     }
